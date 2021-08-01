@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Body, Injectable, Param, Patch } from '@nestjs/common';
 import { Task } from './task.model';
 import { TaskStatus } from './taskStatus.model';
 import {v4 as uuid} from 'uuid';
@@ -31,4 +31,10 @@ export class TasksService {
     this.tasks = filterdTasks;
     return {id: id};
   }
+
+  updateTaskStatus(id: string, status: TaskStatus): Task {
+    const task = this.findTaskById(id);
+    task.status = status;
+    return task;
+  } 
 }
