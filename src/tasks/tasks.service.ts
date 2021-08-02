@@ -7,8 +7,15 @@ import { CreateTaskDTO } from './dto/create-task.dto';
 @Injectable()
 export class TasksService {
   private tasks: Task[] = [];
-  getAllTasks(): Task[] {
-    return this.tasks;
+  getTasks(searchParam: {title?: string, status?: TaskStatus}): Task[] {
+    let searchResult: Task[] = this.tasks;
+    if(searchParam.title) { 
+      return searchResult = searchResult.filter((task) => task.title === searchParam.title);
+    }
+    else if(searchParam.status) {
+      return searchResult.filter((task) => task.status === searchParam.status);
+    }
+    return searchResult;
   }
   createTask(createTaskDTO: CreateTaskDTO): Task {
     const { title, description } = createTaskDTO;
