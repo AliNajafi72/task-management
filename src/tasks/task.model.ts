@@ -1,7 +1,7 @@
 import { TaskStatus } from './taskStatus.model';
 
 export interface Task {
-  id: string;
+  id: BigInteger;
   title: string;
   description: string;
   status: TaskStatus;
